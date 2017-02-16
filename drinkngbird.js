@@ -81,22 +81,56 @@ function createSupport() {
 	scene.add( cube );
 	
 	// right foot
+	cube = new THREE.Mesh(
+		new THREE.CubeGeometry( 20+64+110, 52, 6 ), cubeMaterial );
+	cube.position.x = -45;	
+	cube.position.y = 52/2;	
+	cube.position.z = (6-154)/2;	
+	scene.add( cube );
 	
 	// right leg
-
+	cube = new THREE.Mesh(
+		new THREE.CubeGeometry( 64, 334+52, 6 ), cubeMaterial );
+	cube.position.x = 0;	
+	cube.position.y = (334+52)/2;
+	cube.position.z = (6-154)/2;	
+	scene.add( cube );
 }
 
 // Body of the bird - body and the connector of body and head
 function createBody() {
    var sphereMaterial = new THREE.MeshLambertMaterial( { color: 0xA00000 } );
+   var sphereGeometry = new THREE.SphereGeometry( 116/2, 32, 32 );
+       var body = new THREE.Mesh( sphereGeometry, sphereMaterial );
+       body.position.y = 160;
+       scene.add( body );
    var cylinderMaterial = new THREE.MeshLambertMaterial( { color: 0x0000D0 } );
-
+   var cylinderGeometry = new THREE.CylinderGeometry( 12, 12, 390 );
+       var torso = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
+       torso.position.y = 334+52;
+       scene.add( torso );
 }
 
 // Head of the bird - head + hat
 function createHead() {
    var sphereMaterial = new THREE.MeshLambertMaterial( { color: 0xA00000 } );
+   var sphereGeometry = new THREE.SphereGeometry(104/2, 32, 32);
+   var head = new THREE.Mesh( sphereGeometry, sphereMaterial );
+       head.position.y = 160+390;
+       scene.add( head );
+
+
+
    var cylinderMaterial = new THREE.MeshLambertMaterial( { color: 0x0000D0 } );
+   var cylinderGeometry = new THREE.CylinderGeometry( 142, 142, 10, 32, 32);
+   var hatBill = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
+       hatBill.position.y = 597;
+       scene.add( hatBill );
+       cylinderGeometry = new THREE.CylinderGeometry( 80, 80, 70, 32, 32);
+    var hatBody = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
+       hatBody.position.y = 637;
+       scene.add( hatBody );
+
 
 }
 

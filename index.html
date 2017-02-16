@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			body {
+				font-family: Verdana, Arial, Helvetica, sans-serif;
+				background-color: #CCFFFF;
+				margin: 0px;
+				overflow: hidden;
+			}
+			#container {
+				height: 300px;
+				width: 800px;
+			}
+		</style>
+		<script src="lib/three.js"></script>
+		<script src="lib/Detector.js"></script>
+		<script src="lib/Coordinates.js"></script>
+		<script src="lib/OrbitAndPanControls.js"></script>
+		<script src="lib/stats.min.js"></script>
+		<script src="lib/dat.gui.min.js"></script>
+
+		<script>
+			function getParameterByName(name) {
+			var match = RegExp('[?&]' + name + '=([^&]*)')
+							.exec(window.location.search);
+			return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+			}
+			var loadScript = getParameterByName('load');
+			if ('undefined' !== typeof loadScript) {
+				if ( loadScript !== null ) {
+					var thescript = document.createElement('script');
+					thescript.setAttribute('type','text/javascript');
+					thescript.setAttribute('src',loadScript);
+					document.getElementsByTagName('head')[0].appendChild(thescript);
+				}
+			}
+			else {
+				alert(loadScript);
+			}
+		</script>
+	</head>
+	<body>
+
+
+		<div id="container">
+		</div>
+		<script>
+			if ( ! Detector.webgl ) {
+				Detector.addGetWebGLMessage();
+			}
+			else {
+				elem = document.createElement("div");
+		
+				elem.innerHTML =
+
+					['<br><form name="run"><label>&nbsp;Homework4:</label>',
+							'<select name="assignment"',
+							' OnChange="location.href=run.assignment.options[selectedIndex].value">',
+							'<option selected> select assignment',	
+  							'<option value="?load=polygongeometry1.js">assignment1</option>',
+  							'<option value="?load=polygongeometry2.js">assignment2</option>',
+  							'<option value="?load=polygongeometry3.js">assignment3</option>',
+  							'<option value="?load=buildstair.js">assignment4</option>',
+  							'<option value="?load=drinkngbird.js">assignment5</option>',
+							'</select>'].join('\n');
+  
+					if ('undefined' !== typeof loadScript) {
+						elem.innerHTML = elem.innerHTML + "&nbsp; " + loadScript;
+					}
+					elem.innerHTML = elem.innerHTML + "</form><br/>";
+
+					document.body.insertBefore(elem,document.body.childNodes[0])
+			}
+		</script>
+	</body>
+</html>

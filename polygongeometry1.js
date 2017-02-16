@@ -24,13 +24,15 @@ function PolygonGeometry(sides) {
 		var x = Math.cos( angle );
 		var y = Math.sin( angle );
 		
-		// YOUR CODE HERE
+		geo.vertices.push(new THREE.Vector3(x,y,0.0));
         //Save the vertex location - fill in the code
 
 	}
-    // YOUR CODE HERE
+    
 	// Write the code to generate minimum number of faces for the polygon.
-
+	for (var face = 0 ; face < sides-2; face++){
+		geo.faces.push (new THREE.Face3 (0, face+1, face+2));	
+		}
 	// Return the geometry object
 	return geo;
 }
@@ -56,7 +58,8 @@ function init() {
 	camera.position.z = 10;
 	camera.lookAt(focus);
 
-	renderer = new THREE.WebGLRenderer({ antialias: false, preserveDrawingBuffer: true});
+	renderer = new THREE.WebGLRenderer({ antialias: false
+		, preserveDrawingBuffer: true});
 	renderer.gammaInput = true;
 	renderer.gammaOutput = true;
 	renderer.setSize( canvasWidth, canvasHeight );
@@ -88,7 +91,7 @@ try {
   init();
   showGrids();
   var geo = PolygonGeometry(5);
-  var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.FrontSide } );
+  var material = new THREE.MeshBasicMaterial( { color: 0x006699, side: THREE.FrontSide } );
   var mesh = new THREE.Mesh( geo, material );
   scene.add( mesh );
   addToDOM();
